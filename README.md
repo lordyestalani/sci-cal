@@ -7,7 +7,7 @@ Build the same scientific calculator in multiple widely used programming languag
 - Work with variables, numeric types, functions, and control flow.
 - Read and validate user input, then handle errors such as division by zero.
 - Use each language's standard math library and explore how it handles floating-point precision.
-- Run and test a small program using each language's tooling.
+- Run a small program using each language's tooling and try sample calculations.
 
 ## Planned calculator features
 
@@ -19,8 +19,31 @@ Build the same scientific calculator in multiple widely used programming languag
 
 Start with basic arithmetic in each language, then add scientific functions. Use the same sample calculations across implementations so differences in syntax, error handling, and numerical behavior are easier to see.
 
-As each implementation is added, give it its own folder with instructions for running and testing it.
+As each implementation is added, give it its own folder with instructions for running it.
 
-## Project status
+## Implementation roadmap
 
-This project is in the planning stage. The language list and implementation order are open.
+| Language | Status |
+| --- | --- |
+| Python | Step 1 complete |
+| JavaScript | Planned |
+| TypeScript | Planned |
+| C# | Planned |
+
+## Python
+
+### Step 1 — Basic arithmetic
+
+The command-line calculator takes two numbers and one operator. It supports addition, subtraction, multiplication, and division, with messages for invalid input, unsupported operators, and division by zero. This step practices functions, conditionals, converting input to numbers, and handling exceptions.
+
+Run from the project root with Python 3.
+
+```powershell
+python python/calculator.py
+```
+
+For example, enter `7`, `/`, and `2` when prompted. The calculator prints `Result: 3.5`.
+
+### Step 2 — Scientific functions (planned)
+
+Add powers and square roots, then try inputs to see how the calculator handles inputs outside the supported domain.

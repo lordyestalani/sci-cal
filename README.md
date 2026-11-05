@@ -25,7 +25,7 @@ As each implementation is added, give it its own folder with instructions for ru
 
 | Language | Status |
 | --- | --- |
-| Python | Step 1 complete |
+| Python | Steps 1 and 2 complete |
 | JavaScript | Planned |
 | TypeScript | Planned |
 | C# | Planned |
@@ -34,7 +34,7 @@ As each implementation is added, give it its own folder with instructions for ru
 
 ### Step 1 — Basic arithmetic
 
-The command-line calculator takes two numbers and one operator. It supports addition, subtraction, multiplication, and division, with messages for invalid input, unsupported operators, and division by zero. This step practices functions, conditionals, converting input to numbers, and handling exceptions.
+For basic arithmetic, the command-line calculator takes two numbers and one operator. It supports addition, subtraction, multiplication, and division, with messages for invalid input, unsupported operators, and division by zero. This step practices functions, conditionals, converting input to numbers, and handling exceptions.
 
 Run from the project root with Python 3.
 
@@ -44,6 +44,16 @@ python python/calculator.py
 
 For example, enter `7`, `/`, and `2` when prompted. The calculator prints `Result: 3.5`.
 
-### Step 2 — Scientific functions (planned)
+### Step 2 — Powers and square roots
 
-Add powers and square roots, then try inputs to see how the calculator handles inputs outside the supported domain.
+Use `^` to raise the first number to a power. Use `sqrt` to take the square root of the first number. A square root needs only one input, so the calculator skips the second number prompt.
+
+| Enter at the prompts | Result |
+| --- | --- |
+| `2`, `^`, `3` | `8` |
+| `9`, `sqrt` | `3` |
+| `-9`, `sqrt` | A message that the operation is undefined in the real numbers |
+
+This step uses Python's `math` module and introduces operations that take different numbers of inputs.
+
+### Step 3 — Logarithms (planned)

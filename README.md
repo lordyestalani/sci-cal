@@ -28,7 +28,7 @@ As each implementation is added, give it its own folder with instructions for ru
 | Python | Steps 1–4 complete |
 | JavaScript | Steps 1–4 complete |
 | TypeScript | Steps 1–4 complete |
-| C# | Planned |
+| C# | Step 1 complete |
 
 ## Python
 
@@ -164,3 +164,19 @@ Enter an angle in degrees as the first number and choose **Sine**, **Cosine**, o
 | `90` | Tangent | An error explaining where tangent is undefined |
 
 The three functions join the one-number operation list, so the form hides the second field. The typed calculation result carries either a numeric answer or an error message.
+
+## C#
+
+### Step 1 — Basic arithmetic
+
+With the [.NET 10 SDK](https://learn.microsoft.com/en-us/dotnet/core/install/windows) installed, run this command from the project root.
+
+```powershell
+dotnet run --project csharp
+```
+
+Enter two numbers and one of `+`, `-`, `*`, or `/` when prompted. Use a period as the decimal separator. For example, enter `7`, `/`, and `2` to get `3.5`. Dividing by zero displays an error.
+
+This step uses the `double` numeric type, `double.TryParse()` to validate input, and a switch expression to select the arithmetic operation.
+
+### Step 2 — Powers and square roots (planned)

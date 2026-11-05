@@ -28,7 +28,7 @@ As each implementation is added, give it its own folder with instructions for ru
 | Python | Steps 1–4 complete |
 | JavaScript | Steps 1–4 complete |
 | TypeScript | Steps 1–4 complete |
-| C# | Step 1 complete |
+| C# | Steps 1 and 2 complete |
 
 ## Python
 
@@ -179,4 +179,10 @@ Enter two numbers and one of `+`, `-`, `*`, or `/` when prompted. Use a period a
 
 This step uses the `double` numeric type, `double.TryParse()` to validate input, and a switch expression to select the arithmetic operation.
 
-### Step 2 — Powers and square roots (planned)
+### Step 2 — Powers and square roots
+
+Enter `2`, `^`, and `3` to get `8`. For a square root, enter `9` and `sqrt` to get `3`. The calculator skips the second number prompt for square roots. Try `-9` with `sqrt` to see the real-number domain error.
+
+The switch expression calls `Math.Pow()` for powers and `Math.Sqrt()` for square roots. In C#, `^` is a bitwise operator, so the calculator accepts it as a menu choice and calls `Math.Pow()` to do the calculation.
+
+### Step 3 — Logarithms (planned)

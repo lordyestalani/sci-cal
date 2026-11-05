@@ -12,19 +12,23 @@ internal static class Program
             return;
         }
 
-        Console.Write("Operation (+, -, *, /): ");
+        Console.Write("Operation (+, -, *, /, ^, sqrt): ");
         string? operation = Console.ReadLine()?.Trim();
-        if (operation is not ("+" or "-" or "*" or "/"))
+        if (operation is not ("+" or "-" or "*" or "/" or "^" or "sqrt"))
         {
-            Console.WriteLine("Choose +, -, *, or /.");
+            Console.WriteLine("Choose +, -, *, /, ^, or sqrt.");
             return;
         }
 
-        Console.Write("Second number: ");
-        if (!TryReadNumber(out double right))
+        double right = 0;
+        if (operation != "sqrt")
         {
-            Console.WriteLine("Enter a valid number.");
-            return;
+            Console.Write("Second number: ");
+            if (!TryReadNumber(out right))
+            {
+                Console.WriteLine("Enter a valid number.");
+                return;
+            }
         }
 
         if (operation == "/" && right == 0)
@@ -34,6 +38,12 @@ internal static class Program
         }
 
         double result = Calculate(left, operation, right);
+        if (double.IsNaN(result) || (operation == "^" && left == 0 && right < 0))
+        {
+            Console.WriteLine("This operation is undefined for those inputs in the real numbers.");
+            return;
+        }
+
         if (!double.IsFinite(result))
         {
             Console.WriteLine("The result is too large to represent.");
@@ -60,6 +70,8 @@ internal static class Program
             "-" => left - right,
             "*" => left * right,
             "/" => left / right,
+            "^" => Math.Pow(left, right),
+            "sqrt" => Math.Sqrt(left),
             _ => throw new ArgumentException("Unknown operation.", nameof(operation))
         };
     }

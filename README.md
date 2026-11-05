@@ -26,7 +26,7 @@ As each implementation is added, give it its own folder with instructions for ru
 | Language | Status |
 | --- | --- |
 | Python | Steps 1–4 complete |
-| JavaScript | Steps 1–3 complete |
+| JavaScript | Steps 1–4 complete |
 | TypeScript | Planned |
 | C# | Planned |
 
@@ -113,4 +113,15 @@ Choose **Base-10 logarithm** for `log` or **Natural logarithm** for `ln` (base `
 
 This step uses `Math.log10()` and `Math.log()`. In JavaScript, both functions return `-Infinity` for zero and `NaN` for negative numbers. The calculator shows the same domain error in both cases.
 
-### Step 4 — Trigonometry (planned)
+### Step 4 — Trigonometry
+
+Enter an angle in degrees as the first number and choose **Sine**, **Cosine**, or **Tangent**. JavaScript's trigonometric functions take radians, so the calculator multiplies the angle by `Math.PI / 180` first.
+
+| First number | Operation | Result |
+| --- | --- | --- |
+| `30` | Sine | Approximately `0.5` |
+| `60` | Cosine | Approximately `0.5` |
+| `45` | Tangent | Approximately `1` |
+| `90` | Tangent | A message that the operation is undefined in the real numbers |
+
+Tangent is undefined at odd multiples of 90 degrees. JavaScript displays the computed number directly, so you may see small differences from Python's rounded display.

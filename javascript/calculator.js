@@ -1,3 +1,7 @@
+function toRadians(degrees) {
+  return degrees * (Math.PI / 180);
+}
+
 function calculate(left, operation, right) {
   switch (operation) {
     case "+":
@@ -16,6 +20,15 @@ function calculate(left, operation, right) {
       return Math.log10(left);
     case "ln":
       return Math.log(left);
+    case "sin":
+      return Math.sin(toRadians(left));
+    case "cos":
+      return Math.cos(toRadians(left));
+    case "tan":
+      if (Math.abs(left % 180) === 90) {
+        return NaN;
+      }
+      return Math.tan(toRadians(left));
     default:
       throw new Error("Choose a supported operation.");
   }
@@ -27,7 +40,7 @@ const operationInput = document.querySelector("#operation");
 const rightField = document.querySelector("#right-field");
 const rightInput = document.querySelector("#right");
 const resultOutput = document.querySelector("#result");
-const unaryOperations = ["sqrt", "log", "ln"];
+const unaryOperations = ["sqrt", "log", "ln", "sin", "cos", "tan"];
 
 function updateOperation() {
   rightField.hidden = unaryOperations.includes(operationInput.value);

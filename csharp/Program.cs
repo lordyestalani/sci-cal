@@ -12,16 +12,16 @@ internal static class Program
             return;
         }
 
-        Console.Write("Operation (+, -, *, /, ^, sqrt): ");
+        Console.Write("Operation (+, -, *, /, ^, sqrt, log, ln): ");
         string? operation = Console.ReadLine()?.Trim();
-        if (operation is not ("+" or "-" or "*" or "/" or "^" or "sqrt"))
+        if (operation is not ("+" or "-" or "*" or "/" or "^" or "sqrt" or "log" or "ln"))
         {
-            Console.WriteLine("Choose +, -, *, /, ^, or sqrt.");
+            Console.WriteLine("Choose +, -, *, /, ^, sqrt, log, or ln.");
             return;
         }
 
         double right = 0;
-        if (operation != "sqrt")
+        if (operation is not ("sqrt" or "log" or "ln"))
         {
             Console.Write("Second number: ");
             if (!TryReadNumber(out right))
@@ -34,6 +34,12 @@ internal static class Program
         if (operation == "/" && right == 0)
         {
             Console.WriteLine("Cannot divide by zero.");
+            return;
+        }
+
+        if ((operation is "log" or "ln") && left <= 0)
+        {
+            Console.WriteLine("Logarithms require a positive number.");
             return;
         }
 
@@ -72,6 +78,8 @@ internal static class Program
             "/" => left / right,
             "^" => Math.Pow(left, right),
             "sqrt" => Math.Sqrt(left),
+            "log" => Math.Log10(left),
+            "ln" => Math.Log(left),
             _ => throw new ArgumentException("Unknown operation.", nameof(operation))
         };
     }

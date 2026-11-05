@@ -28,7 +28,7 @@ As each implementation is added, give it its own folder with instructions for ru
 | Python | Steps 1–4 complete |
 | JavaScript | Steps 1–4 complete |
 | TypeScript | Steps 1–4 complete |
-| C# | Steps 1 and 2 complete |
+| C# | Steps 1–3 complete |
 
 ## Python
 
@@ -185,4 +185,10 @@ Enter `2`, `^`, and `3` to get `8`. For a square root, enter `9` and `sqrt` to g
 
 The switch expression calls `Math.Pow()` for powers and `Math.Sqrt()` for square roots. In C#, `^` is a bitwise operator, so the calculator accepts it as a menu choice and calls `Math.Pow()` to do the calculation.
 
-### Step 3 — Logarithms (planned)
+### Step 3 — Logarithms
+
+Enter `1000` and `log` to get `3`, or enter `1` and `ln` to get `0`. Both operations use one positive number and skip the second number prompt. Try `0` or a negative number to see the error.
+
+The calculator checks the input before calling `Math.Log10()` for base 10 or `Math.Log()` for base `e`.
+
+### Step 4 — Trigonometry (planned)

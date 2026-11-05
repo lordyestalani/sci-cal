@@ -25,7 +25,7 @@ As each implementation is added, give it its own folder with instructions for ru
 
 | Language | Status |
 | --- | --- |
-| Python | Steps 1–3 complete |
+| Python | Steps 1–4 complete |
 | JavaScript | Planned |
 | TypeScript | Planned |
 | C# | Planned |
@@ -68,4 +68,15 @@ Use `log` for a base-10 logarithm and `ln` for a natural logarithm (base `e`). B
 
 This step uses `math.log10()` and `math.log()` to show how the base changes the result.
 
-### Step 4 — Trigonometry (planned)
+### Step 4 — Trigonometry
+
+Use `sin`, `cos`, or `tan` with one angle in degrees. The calculator uses `math.radians()` to convert the angle before calling Python's trigonometric functions.
+
+| Enter at the prompts | Result |
+| --- | --- |
+| `30`, `sin` | `0.5` |
+| `60`, `cos` | `0.5` |
+| `45`, `tan` | `1` |
+| `90`, `tan` | A message that the operation is undefined in the real numbers |
+
+Tangent is undefined at odd multiples of 90 degrees. Floating-point rounding can leave a tiny residual in results that are mathematically zero, such as `sin(180°)`.

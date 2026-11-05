@@ -27,7 +27,7 @@ As each implementation is added, give it its own folder with instructions for ru
 | --- | --- |
 | Python | Steps 1–4 complete |
 | JavaScript | Steps 1–4 complete |
-| TypeScript | Step 1 complete |
+| TypeScript | Steps 1 and 2 complete |
 | C# | Planned |
 
 ## Python
@@ -140,4 +140,10 @@ Then open [typescript/index.html](typescript/index.html) in a browser. Enter `7`
 
 The `Operation` type lists the four supported operators, and `CalculationResult` represents either a number or an error message. The browser still supplies the selected operator as text, so the form checks it before calling the calculation function.
 
-### Step 2 — Powers and square roots (planned)
+### Step 2 — Powers and square roots
+
+Choose **Power** and enter `2` and `3` to get `8`. Choose **Square root** and enter `9` to get `3`. The form hides the second number for square roots. Try `-9` to see the error for a negative input.
+
+The `Calculation` type describes two shapes. A square root takes one number, and a power or arithmetic operation requires two. Checking the operation tells TypeScript which fields are available.
+
+### Step 3 — Logarithms (planned)

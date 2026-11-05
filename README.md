@@ -203,3 +203,18 @@ Enter an angle in degrees, then choose `sin`, `cos`, or `tan`. The calculator co
 | `90`, `tan` | An error explaining where tangent is undefined |
 
 Tangent is undefined at odd multiples of 90 degrees. As with the browser versions, floating-point rounding can show a few extra digits.
+
+## Learnings
+
+All four calculators follow the same flow. They read input, validate it, choose an operation, and show a result or an error. The differences are in how each language expresses those steps and how the user interacts with them.
+
+| Language | What this implementation shows |
+| --- | --- |
+| Python | The terminal version uses `float()` to parse input and catches exceptions such as `ValueError`. A series of `if` statements selects the operation. |
+| JavaScript | A browser form submits an event. The handler reads numbers with `valueAsNumber`, checks them at runtime, and updates the result on the page. A change event hides the second field for one-number operations. |
+| TypeScript | The browser version uses the same JavaScript math at runtime. Before it runs, TypeScript checks that one-number and two-number calculations have the fields they need. The result type describes either a number or an error message. Input from the form still needs runtime validation. |
+| C# | The terminal version declares values as `double`, uses `double.TryParse()` to check whether parsing succeeded, and selects the operation with a switch expression. It uses an invariant culture so a period is the decimal separator. |
+
+- **The same operation can have different syntax.** The calculator accepts `^` for powers in every version. Python and C# call `math.pow()` and `Math.Pow()`, while JavaScript and TypeScript use `**`. Python has `math.radians()` for degree conversion. The other versions multiply by pi divided by 180.
+- **The math rules carry across languages.** Square roots and logarithms use one number, while powers use two. Logarithms require a positive input, and tangent is undefined at odd multiples of 90 degrees. The terminal versions skip the second prompt for one-number operations, and the browser versions hide the field.
+- **The displayed digits can differ.** For `sin(30°)`, Python displays `0.5` because it formats the result to 15 significant digits. JavaScript, TypeScript, and C# can display `0.49999999999999994`. Running the same examples across versions makes it easier to spot where floating-point rounding and output formatting affect what you see.

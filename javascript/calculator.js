@@ -12,6 +12,10 @@ function calculate(left, operation, right) {
       return left ** right;
     case "sqrt":
       return Math.sqrt(left);
+    case "log":
+      return Math.log10(left);
+    case "ln":
+      return Math.log(left);
     default:
       throw new Error("Choose a supported operation.");
   }
@@ -23,9 +27,10 @@ const operationInput = document.querySelector("#operation");
 const rightField = document.querySelector("#right-field");
 const rightInput = document.querySelector("#right");
 const resultOutput = document.querySelector("#result");
+const unaryOperations = ["sqrt", "log", "ln"];
 
 function updateOperation() {
-  rightField.hidden = operationInput.value === "sqrt";
+  rightField.hidden = unaryOperations.includes(operationInput.value);
   resultOutput.textContent = "";
 }
 
@@ -37,7 +42,7 @@ form.addEventListener("submit", (event) => {
 
   const left = leftInput.valueAsNumber;
   const operation = operationInput.value;
-  const needsSecondNumber = operation !== "sqrt";
+  const needsSecondNumber = !unaryOperations.includes(operation);
   const right = rightInput.valueAsNumber;
 
   if (!Number.isFinite(left) || (needsSecondNumber && !Number.isFinite(right))) {
@@ -53,7 +58,9 @@ form.addEventListener("submit", (event) => {
   }
 
   const result = calculate(left, operation, right);
-  if (Number.isNaN(result) || (operation === "^" && left === 0 && right < 0)) {
+  const logarithmOfZero = (operation === "log" || operation === "ln") && left === 0;
+  const zeroToNegativePower = operation === "^" && left === 0 && right < 0;
+  if (Number.isNaN(result) || logarithmOfZero || zeroToNegativePower) {
     resultOutput.textContent = "This operation is undefined for those inputs in the real numbers.";
     return;
   }

@@ -26,7 +26,7 @@ As each implementation is added, give it its own folder with instructions for ru
 | Language | Status |
 | --- | --- |
 | Python | Steps 1–4 complete |
-| JavaScript | Steps 1 and 2 complete |
+| JavaScript | Steps 1–3 complete |
 | TypeScript | Planned |
 | C# | Planned |
 
@@ -101,4 +101,16 @@ Choose **Power** to raise the first number to the power of the second. Choose **
 
 This step uses the `**` operator, `Math.sqrt()`, and a change event to show or hide the second number field.
 
-### Step 3 — Logarithms (planned)
+### Step 3 — Logarithms
+
+Choose **Base-10 logarithm** for `log` or **Natural logarithm** for `ln` (base `e`). Both take one positive number, so the form hides the second number field.
+
+| First number | Operation | Result |
+| --- | --- | --- |
+| `1000` | Base-10 logarithm | `3` |
+| `1` | Natural logarithm | `0` |
+| `0` | Base-10 logarithm | A message that the operation is undefined in the real numbers |
+
+This step uses `Math.log10()` and `Math.log()`. In JavaScript, both functions return `-Infinity` for zero and `NaN` for negative numbers. The calculator shows the same domain error in both cases.
+
+### Step 4 — Trigonometry (planned)

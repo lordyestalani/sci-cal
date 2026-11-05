@@ -14,18 +14,26 @@ def calculate(left, operation, right=None):
         return math.pow(left, right)
     if operation == "sqrt":
         return math.sqrt(left)
+    if operation == "log":
+        return math.log10(left)
+    if operation == "ln":
+        return math.log(left)
     raise ValueError("Unknown operation.")
 
 
 def main():
+    binary_operations = ("+", "-", "*", "/", "^")
+    unary_operations = ("sqrt", "log", "ln")
+    choices = ", ".join(binary_operations + unary_operations)
+
     try:
         left = float(input("First number: "))
-        operation = input("Operation (+, -, *, /, ^, sqrt): ").strip()
-        if operation not in ("+", "-", "*", "/", "^", "sqrt"):
-            print("Choose +, -, *, /, ^, or sqrt.")
+        operation = input(f"Operation ({choices}): ").strip()
+        if operation not in binary_operations + unary_operations:
+            print(f"Choose one of these operations: {choices}.")
             return
         right = None
-        if operation != "sqrt":
+        if operation in binary_operations:
             right = float(input("Second number: "))
     except ValueError:
         print("Enter a valid number.")

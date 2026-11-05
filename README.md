@@ -25,7 +25,7 @@ As each implementation is added, give it its own folder with instructions for ru
 
 | Language | Status |
 | --- | --- |
-| Python | Steps 1 and 2 complete |
+| Python | Steps 1–3 complete |
 | JavaScript | Planned |
 | TypeScript | Planned |
 | C# | Planned |
@@ -56,4 +56,16 @@ Use `^` to raise the first number to a power. Use `sqrt` to take the square root
 
 This step uses Python's `math` module and introduces operations that take different numbers of inputs.
 
-### Step 3 — Logarithms (planned)
+### Step 3 — Logarithms
+
+Use `log` for a base-10 logarithm and `ln` for a natural logarithm (base `e`). Both take one positive number.
+
+| Enter at the prompts | Result |
+| --- | --- |
+| `1000`, `log` | `3` |
+| `1`, `ln` | `0` |
+| `0`, `log` | A message that the operation is undefined in the real numbers |
+
+This step uses `math.log10()` and `math.log()` to show how the base changes the result.
+
+### Step 4 — Trigonometry (planned)

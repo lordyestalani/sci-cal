@@ -26,7 +26,7 @@ As each implementation is added, give it its own folder with instructions for ru
 | Language | Status |
 | --- | --- |
 | Python | Steps 1–4 complete |
-| JavaScript | Step 1 complete |
+| JavaScript | Steps 1 and 2 complete |
 | TypeScript | Planned |
 | C# | Planned |
 
@@ -89,4 +89,16 @@ Open [javascript/index.html](javascript/index.html) in a browser. Enter two numb
 
 This step uses a form submission event to read the inputs, call the arithmetic function, and show the result on the page. The browser runs the HTML and JavaScript directly.
 
-### Step 2 — Powers and square roots (planned)
+### Step 2 — Powers and square roots
+
+Choose **Power** to raise the first number to the power of the second. Choose **Square root** to use just the first number. The form hides the second number field when you select **Square root**.
+
+| First number | Operation | Second number | Result |
+| --- | --- | --- | --- |
+| `2` | Power | `3` | `8` |
+| `9` | Square root | | `3` |
+| `-9` | Square root | | A message that the operation is undefined in the real numbers |
+
+This step uses the `**` operator, `Math.sqrt()`, and a change event to show or hide the second number field.
+
+### Step 3 — Logarithms (planned)

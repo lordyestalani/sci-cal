@@ -12,7 +12,7 @@
       padding: 0 1rem;
       font: 1rem/1.5 system-ui, sans-serif;
     }
-    form, label {
+    form, label:not([hidden]) {
       display: grid;
       gap: 0.5rem;
     }
@@ -32,7 +32,7 @@
 <body>
   <main>
     <h1>Scientific Calculator</h1>
-    <p>JavaScript · Step 1 — Basic arithmetic</p>
+    <p>JavaScript · Step 2 — Powers and square roots</p>
     <form id="calculator" novalidate>
       <label>
         First number
@@ -45,9 +45,11 @@
           <option value="-">− Subtraction</option>
           <option value="*">× Multiplication</option>
           <option value="/">÷ Division</option>
+          <option value="^">^ Power</option>
+          <option value="sqrt">√ Square root</option>
         </select>
       </label>
-      <label>
+      <label id="right-field">
         Second number
         <input id="right" type="number" step="any" required>
       </label>

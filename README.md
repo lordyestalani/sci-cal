@@ -26,7 +26,7 @@ As each implementation is added, give it its own folder with instructions for ru
 | Language | Status |
 | --- | --- |
 | Python | Steps 1–4 complete |
-| JavaScript | Planned |
+| JavaScript | Step 1 complete |
 | TypeScript | Planned |
 | C# | Planned |
 
@@ -80,3 +80,13 @@ Use `sin`, `cos`, or `tan` with one angle in degrees. The calculator uses `math.
 | `90`, `tan` | A message that the operation is undefined in the real numbers |
 
 Tangent is undefined at odd multiples of 90 degrees. Floating-point rounding can leave a tiny residual in results that are mathematically zero, such as `sin(180°)`.
+
+## JavaScript
+
+### Step 1 — Basic arithmetic
+
+Open [javascript/index.html](javascript/index.html) in a browser. Enter two numbers, choose an operation, and select **Calculate**. For example, enter `7` and `2` and choose division to get `3.5`. Try `0` as the second number to see the division-by-zero message.
+
+This step uses a form submission event to read the inputs, call the arithmetic function, and show the result on the page. The browser runs the HTML and JavaScript directly.
+
+### Step 2 — Powers and square roots (planned)

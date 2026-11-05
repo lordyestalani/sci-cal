@@ -12,16 +12,18 @@ internal static class Program
             return;
         }
 
-        Console.Write("Operation (+, -, *, /, ^, sqrt, log, ln): ");
-        string? operation = Console.ReadLine()?.Trim();
-        if (operation is not ("+" or "-" or "*" or "/" or "^" or "sqrt" or "log" or "ln"))
+        const string operations = "+, -, *, /, ^, sqrt, log, ln, sin, cos, tan";
+        Console.Write($"Operation ({operations}, trig angles in degrees): ");
+        string operation = Console.ReadLine()?.Trim() ?? string.Empty;
+        bool takesTwoNumbers = operation is "+" or "-" or "*" or "/" or "^";
+        if (!takesTwoNumbers && operation is not ("sqrt" or "log" or "ln" or "sin" or "cos" or "tan"))
         {
-            Console.WriteLine("Choose +, -, *, /, ^, sqrt, log, or ln.");
+            Console.WriteLine($"Choose one of these operations: {operations}.");
             return;
         }
 
         double right = 0;
-        if (operation is not ("sqrt" or "log" or "ln"))
+        if (takesTwoNumbers)
         {
             Console.Write("Second number: ");
             if (!TryReadNumber(out right))
@@ -40,6 +42,12 @@ internal static class Program
         if ((operation is "log" or "ln") && left <= 0)
         {
             Console.WriteLine("Logarithms require a positive number.");
+            return;
+        }
+
+        if (operation == "tan" && Math.Abs(left % 180) == 90)
+        {
+            Console.WriteLine("Tangent is undefined at odd multiples of 90 degrees.");
             return;
         }
 
@@ -80,7 +88,15 @@ internal static class Program
             "sqrt" => Math.Sqrt(left),
             "log" => Math.Log10(left),
             "ln" => Math.Log(left),
+            "sin" => Math.Sin(ToRadians(left)),
+            "cos" => Math.Cos(ToRadians(left)),
+            "tan" => Math.Tan(ToRadians(left)),
             _ => throw new ArgumentException("Unknown operation.", nameof(operation))
         };
+    }
+
+    private static double ToRadians(double degrees)
+    {
+        return degrees * (Math.PI / 180);
     }
 }

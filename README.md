@@ -28,7 +28,7 @@ As each implementation is added, give it its own folder with instructions for ru
 | Python | Steps 1–4 complete |
 | JavaScript | Steps 1–4 complete |
 | TypeScript | Steps 1–4 complete |
-| C# | Steps 1–3 complete |
+| C# | Steps 1–4 complete |
 
 ## Python
 
@@ -191,4 +191,15 @@ Enter `1000` and `log` to get `3`, or enter `1` and `ln` to get `0`. Both operat
 
 The calculator checks the input before calling `Math.Log10()` for base 10 or `Math.Log()` for base `e`.
 
-### Step 4 — Trigonometry (planned)
+### Step 4 — Trigonometry
+
+Enter an angle in degrees, then choose `sin`, `cos`, or `tan`. The calculator converts the angle to radians with `Math.PI / 180` before calling the corresponding C# math function.
+
+| Enter at the prompts | Result |
+| --- | --- |
+| `30`, `sin` | Approximately `0.5` |
+| `60`, `cos` | Approximately `0.5` |
+| `45`, `tan` | Approximately `1` |
+| `90`, `tan` | An error explaining where tangent is undefined |
+
+Tangent is undefined at odd multiples of 90 degrees. As with the browser versions, floating-point rounding can show a few extra digits.

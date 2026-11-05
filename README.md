@@ -27,7 +27,7 @@ As each implementation is added, give it its own folder with instructions for ru
 | --- | --- |
 | Python | Steps 1–4 complete |
 | JavaScript | Steps 1–4 complete |
-| TypeScript | Planned |
+| TypeScript | Step 1 complete |
 | C# | Planned |
 
 ## Python
@@ -125,3 +125,19 @@ Enter an angle in degrees as the first number and choose **Sine**, **Cosine**, o
 | `90` | Tangent | A message that the operation is undefined in the real numbers |
 
 Tangent is undefined at odd multiples of 90 degrees. JavaScript displays the computed number directly, so you may see small differences from Python's rounded display.
+
+## TypeScript
+
+### Step 1 — Basic arithmetic and types
+
+With Node.js and npm installed, compile the calculator from the project root.
+
+```powershell
+npx --package=typescript@6.0.3 tsc --project typescript
+```
+
+Then open [typescript/index.html](typescript/index.html) in a browser. Enter `7` and `2`, choose **Division**, and select **Calculate** to get `3.5`. Recompile after changing the TypeScript source.
+
+The `Operation` type lists the four supported operators, and `CalculationResult` represents either a number or an error message. The browser still supplies the selected operator as text, so the form checks it before calling the calculation function.
+
+### Step 2 — Powers and square roots (planned)

@@ -27,7 +27,7 @@ As each implementation is added, give it its own folder with instructions for ru
 | --- | --- |
 | Python | Steps 1–4 complete |
 | JavaScript | Steps 1–4 complete |
-| TypeScript | Steps 1–3 complete |
+| TypeScript | Steps 1–4 complete |
 | C# | Planned |
 
 ## Python
@@ -152,4 +152,15 @@ Choose **Base-10 logarithm** and enter `1000` to get `3`, or choose **Natural lo
 
 The calculator derives the operation types from the same lists it uses to validate the selected option. Adding `log` and `ln` to the one-number list also makes the form hide the second number field for them.
 
-### Step 4 — Trigonometry (planned)
+### Step 4 — Trigonometry
+
+Enter an angle in degrees as the first number and choose **Sine**, **Cosine**, or **Tangent**. The calculator converts the angle to radians before using the math functions.
+
+| First number | Operation | Result |
+| --- | --- | --- |
+| `30` | Sine | Approximately `0.5` |
+| `60` | Cosine | Approximately `0.5` |
+| `45` | Tangent | Approximately `1` |
+| `90` | Tangent | An error explaining where tangent is undefined |
+
+The three functions join the one-number operation list, so the form hides the second field. The typed calculation result carries either a numeric answer or an error message.

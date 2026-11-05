@@ -1,5 +1,5 @@
 const binaryOperations = ["+", "-", "*", "/", "^"] as const;
-const unaryOperations = ["sqrt", "log", "ln"] as const;
+const unaryOperations = ["sqrt", "log", "ln", "sin", "cos", "tan"] as const;
 
 type BinaryOperation = (typeof binaryOperations)[number];
 type UnaryOperation = (typeof unaryOperations)[number];
@@ -21,26 +21,45 @@ function isOperation(value: string): value is Operation {
   return isUnaryOperation(value) || binaryOperations.some((operation) => operation === value);
 }
 
-function calculate(calculation: Calculation): CalculationResult {
-  const { left } = calculation;
-  if (!("right" in calculation)) {
-    if (!Number.isFinite(left)) {
-      return { ok: false, message: "Enter a valid number." };
-    }
-    if (calculation.operation === "sqrt") {
+function toRadians(degrees: number): number {
+  return degrees * (Math.PI / 180);
+}
+
+function calculateUnary(left: number, operation: UnaryOperation): CalculationResult {
+  if (!Number.isFinite(left)) {
+    return { ok: false, message: "Enter a valid number." };
+  }
+
+  switch (operation) {
+    case "sqrt":
       if (left < 0) {
         return { ok: false, message: "A negative number has no real square root." };
       }
       return { ok: true, value: Math.sqrt(left) };
-    }
-    if (left <= 0) {
-      return { ok: false, message: "Logarithms require a positive number." };
-    }
-    const value = calculation.operation === "log" ? Math.log10(left) : Math.log(left);
-    return { ok: true, value };
+    case "log":
+    case "ln":
+      if (left <= 0) {
+        return { ok: false, message: "Logarithms require a positive number." };
+      }
+      return { ok: true, value: operation === "log" ? Math.log10(left) : Math.log(left) };
+    case "sin":
+      return { ok: true, value: Math.sin(toRadians(left)) };
+    case "cos":
+      return { ok: true, value: Math.cos(toRadians(left)) };
+    case "tan":
+      if (Math.abs(left % 180) === 90) {
+        return { ok: false, message: "Tangent is undefined at odd multiples of 90 degrees." };
+      }
+      return { ok: true, value: Math.tan(toRadians(left)) };
+  }
+}
+
+function calculate(calculation: Calculation): CalculationResult {
+  if (!("right" in calculation)) {
+    return calculateUnary(calculation.left, calculation.operation);
   }
 
-  const { operation, right } = calculation;
+  const { left, operation, right } = calculation;
   if (!Number.isFinite(left) || !Number.isFinite(right)) {
     return { ok: false, message: "Enter two valid numbers." };
   }

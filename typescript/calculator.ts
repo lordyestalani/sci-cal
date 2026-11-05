@@ -1,32 +1,46 @@
-type BinaryOperation = "+" | "-" | "*" | "/" | "^";
-type Operation = BinaryOperation | "sqrt";
+const binaryOperations = ["+", "-", "*", "/", "^"] as const;
+const unaryOperations = ["sqrt", "log", "ln"] as const;
+
+type BinaryOperation = (typeof binaryOperations)[number];
+type UnaryOperation = (typeof unaryOperations)[number];
+type Operation = BinaryOperation | UnaryOperation;
 
 type Calculation =
-  | { operation: "sqrt"; left: number }
+  | { operation: UnaryOperation; left: number }
   | { operation: BinaryOperation; left: number; right: number };
 
 type CalculationResult =
   | { ok: true; value: number }
   | { ok: false; message: string };
 
+function isUnaryOperation(value: string): value is UnaryOperation {
+  return unaryOperations.some((operation) => operation === value);
+}
+
 function isOperation(value: string): value is Operation {
-  return value === "+" || value === "-" || value === "*" || value === "/"
-    || value === "^" || value === "sqrt";
+  return isUnaryOperation(value) || binaryOperations.some((operation) => operation === value);
 }
 
 function calculate(calculation: Calculation): CalculationResult {
-  const { left, operation } = calculation;
-  if (operation === "sqrt") {
+  const { left } = calculation;
+  if (!("right" in calculation)) {
     if (!Number.isFinite(left)) {
       return { ok: false, message: "Enter a valid number." };
     }
-    if (left < 0) {
-      return { ok: false, message: "A negative number has no real square root." };
+    if (calculation.operation === "sqrt") {
+      if (left < 0) {
+        return { ok: false, message: "A negative number has no real square root." };
+      }
+      return { ok: true, value: Math.sqrt(left) };
     }
-    return { ok: true, value: Math.sqrt(left) };
+    if (left <= 0) {
+      return { ok: false, message: "Logarithms require a positive number." };
+    }
+    const value = calculation.operation === "log" ? Math.log10(left) : Math.log(left);
+    return { ok: true, value };
   }
 
-  const { right } = calculation;
+  const { operation, right } = calculation;
   if (!Number.isFinite(left) || !Number.isFinite(right)) {
     return { ok: false, message: "Enter two valid numbers." };
   }
@@ -74,7 +88,7 @@ if (!form || !leftInput || !operationInput || !rightField || !rightInput || !res
 }
 
 const updateOperation = () => {
-  rightField.hidden = operationInput.value === "sqrt";
+  rightField.hidden = isUnaryOperation(operationInput.value);
   resultOutput.textContent = "";
 };
 
@@ -91,7 +105,7 @@ form.addEventListener("submit", (event) => {
   }
 
   const left = leftInput.valueAsNumber;
-  const result = operation === "sqrt"
+  const result = isUnaryOperation(operation)
     ? calculate({ operation, left })
     : calculate({ operation, left, right: rightInput.valueAsNumber });
   resultOutput.textContent = result.ok ? `Result: ${result.value}` : result.message;

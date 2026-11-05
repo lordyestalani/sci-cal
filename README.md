@@ -27,7 +27,7 @@ As each implementation is added, give it its own folder with instructions for ru
 | --- | --- |
 | Python | Steps 1–4 complete |
 | JavaScript | Steps 1–4 complete |
-| TypeScript | Steps 1 and 2 complete |
+| TypeScript | Steps 1–3 complete |
 | C# | Planned |
 
 ## Python
@@ -144,6 +144,12 @@ The `Operation` type lists the four supported operators, and `CalculationResult`
 
 Choose **Power** and enter `2` and `3` to get `8`. Choose **Square root** and enter `9` to get `3`. The form hides the second number for square roots. Try `-9` to see the error for a negative input.
 
-The `Calculation` type describes two shapes. A square root takes one number, and a power or arithmetic operation requires two. Checking the operation tells TypeScript which fields are available.
+The `Calculation` type describes two shapes. A square root takes one number, and a power or arithmetic operation requires two. The form builds the appropriate shape for the selected operation.
 
-### Step 3 — Logarithms (planned)
+### Step 3 — Logarithms
+
+Choose **Base-10 logarithm** and enter `1000` to get `3`, or choose **Natural logarithm** and enter `1` to get `0`. Both use one positive number. Try `0` or a negative number to see the error.
+
+The calculator derives the operation types from the same lists it uses to validate the selected option. Adding `log` and `ln` to the one-number list also makes the form hide the second number field for them.
+
+### Step 4 — Trigonometry (planned)
